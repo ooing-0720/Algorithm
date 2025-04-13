@@ -30,13 +30,14 @@ class TimSort
     k = left
 
     while i < length1 && j < length2 do
-      if leftArr[i] <= rightArr[i] then
+      if leftArr[i] <= rightArr[j] then
         arr[k] = leftArr[i]
         i += 1
       else
         arr[k] = rightArr[j]
         j += 1
       end
+      k += 1
     end
 
     while i < length1 do
@@ -66,10 +67,16 @@ class TimSort
           merge(arr, left, mid, right)
         end
       end
+      size *= 2
     end
   end
 end
 
-arr = [3, 1, 2, 4, 5, 7, 6, 8]
+arr = Array.new(100) { rand(200) }
+
+start_time = Time.now
 tim = TimSort.new(arr)
-puts arr
+end_time = Time.now
+
+puts arr.sort == arr
+puts end_time - start_time
